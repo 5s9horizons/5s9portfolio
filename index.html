@@ -114,61 +114,7 @@
                 opacity: 1;
                 transform: translateY(0);
             }
-        }
-
-        /* 3D Cubes */
-        .scene {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .cube-wrapper {
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            transform-style: preserve-3d;
-            animation: rotate 20s infinite linear;
-        }
-
-        .cube {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            transform-style: preserve-3d;
-            opacity: 0.5;
-        }
-
-        .cube-face {
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            background: rgba(0, 31, 63, 0.1);
-            border: 2px solid var(--navy);
-            backface-visibility: visible;
-        }
-
-        /* Front face */
-        .cube-face:nth-child(1) { transform: translateZ(50px); }
-        /* Back face */
-        .cube-face:nth-child(2) { transform: rotateY(180deg) translateZ(50px); }
-        /* Right face */
-        .cube-face:nth-child(3) { transform: rotateY(90deg) translateZ(50px); }
-        /* Left face */
-        .cube-face:nth-child(4) { transform: rotateY(-90deg) translateZ(50px); }
-        /* Top face */
-        .cube-face:nth-child(5) { transform: rotateX(90deg) translateZ(50px); }
-        /* Bottom face */
-        .cube-face:nth-child(6) { transform: rotateX(-90deg) translateZ(50px); }
-
-        @keyframes rotate {
-            0% { transform: rotateX(0) rotateY(0) rotateZ(0); }
-            100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
-        }
+        } 
 
         /* Overlay */
         .overlay {
@@ -541,7 +487,7 @@
                 document.querySelectorAll('section').forEach(section => {
                     section.classList.remove('active');
                 });
-                
+            });
                 // Show selected section
                 const targetId = this.getAttribute('href').substring(1);
                 document.getElementById(targetId).classList.add('active');
@@ -550,41 +496,7 @@
                 sidebar.classList.remove('active');
                 overlay.classList.remove('active');
             });
-        });
-
-        // Create 3D Cube
-        function createCube(x, y) {
-            const wrapper = document.createElement('div');
-            wrapper.className = 'cube-wrapper';
-            wrapper.style.left = x + '%';
-            wrapper.style.top = y + '%';
-
-            const cube = document.createElement('div');
-            cube.className = 'cube';
-
-            // Create 6 faces
-            for (let i = 0; i < 6; i++) {
-                const face = document.createElement('div');
-                face.className = 'cube-face';
-                cube.appendChild(face);
-            }
-
-            wrapper.appendChild(cube);
-            document.querySelector('.scene').appendChild(wrapper);
-        }
-
-        // Create multiple cubes at different positions
-        const cubePositions = [
-            { x: 20, y: 20 },
-            { x: 70, y: 60 },
-            { x: 80, y: 30 },
-            { x: 30, y: 70 },
-            { x: 50, y: 40 }
-        ];
-
-        cubePositions.forEach(pos => {
-            createCube(pos.x, pos.y);
-        });
+        
 
         // Handle initial page load
         const initialPage = window.location.hash.substring(1) || 'home';
