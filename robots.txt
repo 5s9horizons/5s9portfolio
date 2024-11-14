@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://5s9horizons.github.io/5s9portfolio/sitemap.xml

@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Primary Meta Tags -->
+<meta name="title" content="5s9 Horizons - Web Development & Digital Solutions">
+<meta name="description" content="5s9 Horizons is a virtual enterprise specializing in web development, animation, and multimedia content creation, founded by Samba Sene and Farba Diouf.">
+<meta name="keywords" content="web development, animation, multimedia content, digital solutions, 5s9, educational websites, responsive design">
+<meta name="author" content="Samba Sene, Farba Diouf">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://5s9horizons.github.io/5s9portfolio/">
+<meta property="og:title" content="5s9 Horizons - Web Development & Digital Solutions">
+<meta property="og:description" content="Professional web development, animation, and multimedia content creation services by 5s9 Horizons.">
+<meta property="og:image" content="https://5s9horizons.github.io/5s9portfolio/favicon.png">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://5s9horizons.github.io/5s9portfolio/">
+<meta property="twitter:title" content="5s9 Horizons - Web Development & Digital Solutions">
+<meta property="twitter:description" content="Professional web development, animation, and multimedia content creation services by 5s9 Horizons.">
+<meta property="twitter:image" content="https://5s9horizons.github.io/5s9portfolio/favicon.png">
+    <title>5s9 Portfolio - S_S & F_D</title>
+    <link rel="icon" href="favicon.png">
+    <script src="https://kit.fontawesome.com/1519f19b40.js" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --navy: #4A90E2;
+            --light-gray: #1B5E20;
+            --text-dark: #333;
+            --sidebar-width: 250px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-gray);
+            /* For a darker green mixed with dark gray */
+background-color: rgba(31, 77, 42, 0.85); /* Darker Muted Green */
+            color: var(--text-dark);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            position: fixed;
+            left: -var(--sidebar-width);
+            top: 0;
+            width: var(--sidebar-width);
+            height: 100%;
+            background-color: var(--navy);
+            padding: 2rem 0;
+            transition: left 0.3s ease;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .sidebar.active {
+            left: 0;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .hamburger {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+            z-index: 1001;
+            background: var(--navy);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            transition: 0.3s ease;
+        }
+
+        .hamburger:hover {
+            background: #002b59;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1rem;
+            margin-top: 3rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Main Content */
+        main {
+            padding: 2rem;
+            transition: margin-left 0.3s ease;
+            position: relative;
+            min-height:75vh;
+        }
+
+        /* Page Sections */
+        section {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.5s forwards;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 60px auto 0;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        } 
+
+        /* Overlay */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+        /* Previous styles remain the same until the section styles */
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-category h3 {
+            color: var(--navy);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--navy);
+            padding-bottom: 0.5rem;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .skill-list li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--navy);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-status {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .status-completed {
+            background: #e6ffe6;
+            color: #006700;
+        }
+
+        .status-progress {
+            background: #fff3e6;
+            color: #995200;
+        }
+
+        .status-planned {
+            background: #e6f3ff;
+            color: #004080;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 2rem auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--navy);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: #3CB371;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #002b59;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: var(--navy);
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card {
+                margin: 1rem 0;
+            }
+
+            section {
+                padding: 1rem;
+            }
+        }
+        
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .float-image {
+            float: right;
+            margin: 0 0 10px 10px; /* Space around the image to avoid crowding */
+            width: 40%; /* Adjust size as needed */
+            max-width: 200px; /* Prevent it from getting too large */
+        }
+        
+        .email-button {
+            background-color: #3CB371; /* Button background color */
+            color: #ffffff; /* Text color */
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .email-button:hover {
+            background-color: #005bb5; /* Darker shade for hover effect */
+         }
+         
+         .footer {
+           position: relative;
+           bottom: 0;
+         }
+         
+         .scene {     
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;            
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .atom {
+            position: fixed;
+            width: 200px;
+            height: 200px;
+        }
+
+        .orbit-1 { transform: translate(-50%, -50%) rotate(0deg); }
+
+        .electron {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: #0066cc;
+            border-radius: 50%;
+            top: 50%;
+            left: -7.5px; /* moitié de la largeur */
+            transform-origin: calc(100% + 80px) 50%;
+            box-shadow: 0 0 15px #0066cc;
+        }
+
+        .electron-1 { animation: electron 3.125s infinite linear; }
+
+        @keyframes electron {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .blog-card {
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .blog-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .blog-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .blog-content {
+        padding: 1.5rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .blog-date {
+        color: #666;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .blog-title {
+        color: var(--navy);
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
+    }
+
+    .blog-excerpt {
+        color: #444;
+        margin-bottom: 1.5rem;
+        flex-grow: 1;
+    }
+
+    .blog-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .blog-tag {
+        background: #e0e0e0;
+        color: #666;
+        padding: 0.25rem 0.75rem;
+        border-radius: 15px;
+        font-size: 0.85rem;
+    }
+
+    .read-more {
+        color: var(--navy);
+        text-decoration: none;
+        font-weight: bold;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: color 0.3s;
+    }
+
+    .read-more:hover {
+        color: #002b59;
+    }
+
+    .blog-pagination {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    .page-button {
+        background: white;
+        border: 1px solid var(--navy);
+        color: var(--navy);
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    .page-button:hover, .page-button.active {
+        background: var(--navy);
+        color: white;
+    }
+
+    .blog-filter {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .filter-button {
+        background: transparent;
+        border: 1px solid white;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    .filter-button:hover, .filter-button.active {
+        background: white;
+        color: var(--navy);
+    }
+
+    @media (max-width: 768px) {
+        .blog-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .blog-filter {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+    </style>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "5s9 Horizons",
+  "description": "Professional web development, animation, and multimedia content creation services",
+  "url": "https://5s9horizons.github.io/5s9portfolio/",
+  "logo": "https://5s9horizons.github.io/5s9portfolio/favicon.png",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "celerity5s9@gmail.com",
+    "contactType": "customer service"
+  },
+  "sameAs": [
+    "https://www.facebook.com/5s9horzons/",
+    "https://www.instagram.com/5s9_horizons/"
+  ]
+}
+</script>
+</head>
+<body>
+    <div class="hamburger">☰</div>
+    <div class="overlay"></div>
+    
+    <nav class="sidebar">
+        <div class="nav-links">
+            <a href="#home" data-page="home">Home</a>
+            <a href="#projects" data-page="projects">Projects</a>
+            <a href="#skills" data-page="skills">Skills</a>
+            <a href="#certifications" data-page="certifications">Certifications</a>
+            <a href="#about" data-page="about">About</a>
+            <a href="#contact" data-page="contact">Contact</a>
+            <a href="#blog" data-page="blog">Blog</a>
+        </div>
+    </nav>
+    
+    <div class="scene">
+
+    <main>
+        <!-- Your existing sections -->
+        <section id="home" class="active" style="text-align: center;">
+            <img src="favicon.png" alt="logo" width="50%">
+            <div class="project-card">
+            <h2><font size="6">5s9 Horizons</font></h2><br><br>
+            <p>Welcome to our versatile virtual enterprise. We are two entrepreneurs passionate about creating innovative digital solutions.</p>
+            <br/><br/>
+            <img src="undraw_Multitasking_re_ffpb.png" alt="Multitasking" width="100%">
+        </div>
+        </section>
+        
+    <!-- Previous navigation and structure remains the same -->
+    
+    <section id="skills">
+        <h2 style="text-align: center; color: white;">Our Skills</h2>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3><b>Web Development</b></h3>
+                <ul class="skill-list">
+                    <li><b>HTML5 & CSS3</b></li>
+                    <img src="undraw_Static_website_re_x70h.png" alt="HTML5 & CSS3" width="100%"><br/><br/>
+                    <li><b>JavaScript (ES6+)</b></li>
+                    <img src="undraw_static_assets_rpm6.png" alt="JavaScript" width="100%"><br/><br/>
+                    <li><b>Responsive Design</b></li>
+                    <img src="undraw_progressive_app_m9ms.png" alt="Responsive" width="100%"><br/><br/>
+                    <li><b>Version Control (Git)</b></li>
+                    <img src="undraw_Server_push_re_303w.png" alt="version control" width="100%">
+                </ul>
+            </div><br/><br/><br/><br/>
+            <div class="skill-category">
+                <h3><b>Multimedia Content</b></h3>
+                <ul class="skill-list">
+                    <li><b>Video Editing</b></li>
+                    <img src="undraw_video_upload_3d4u.png" alt="video" width="100%"><br/><br/>
+                    <li><b>Animation Creation</b></li>
+                    <img src="undraw_Animating_re_5gvn.png" alt="animation" width="100%"><br/><br/>
+                    <!-- <li><b>Graphic Design</b></li> -->
+                    <li><b>Content Management</b></li>
+                    <img src="undraw_Image_viewer_re_7ejc.png" alt="content management" width="100%">
+                </ul>
+            </div><br/><br/><br/><br/>
+            <div class="skill-category">
+                <h3><b>Tools & Technologies</b></h3>
+                <ul class="skill-list">
+                    <li><b>Code editir (PC & Phone)</b></li>
+                    <img src="undraw_My_code_snippets_re_4adu.png" alt="code editor" width="100%"><br/><br/>
+                    <li><b>Google Analytics</b></li>
+                    <img src="undraw_visual_data_re_mxxo.png" alt="data" width="100%"><br/><br/>
+                    <li><b>Forms Integration</b></li>
+                    <img src="undraw_reviews_lp8w.png" alt="feedbacks" width="100%"><br/><br/>
+                    <li><b>Cap Cut</b></li>
+                    <img src="undraw_Optimize_image_re_3tb1.png" alt="content" width="100%">
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications">
+        <h2 style="text-align: center; color: white;">Certifications</h2>
+        <div class="project-card">
+            <p>We are currently working towards various professional certifications. Stay tuned for updates!</p>
+            <img src="undraw_No_data_re_kwbl.png" alt="nothing yet" width="100%">
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 style="text-align: center; color: white;">Our Projects</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <span class="project-status status-completed">Completed</span>
+                <img src="undraw_Done_re_oak4.png" alt="completed" width="100%">
+                <h3>5s9 e-Business</h3><br>
+                <p>A Simple yet very functional static e-commerce website showcasing our development and design capabilities.</p>
+                <p>Built with basic web technologies and without any backend constraint.</p><br><p>Have a quick look <a href="https://collapse5s9.github.io/5s9ebusiness/" target="_blank">here</a></p><br>
+               <p><strong>Technologies:</strong> HTML5, CSS3, JavaScript, AOS(Animate on Scroll) Formspree, Responsive Design, Font Awesome</p>
+            </div>
+            
+            <div class="project-card">
+                <span class="project-status status-progress">In Progress</span>
+                <img src="undraw_Process_re_gws7.png" alt="process" width="100%">
+                <h3>Educational Website for Students</h3><br>
+                <p>A comprehensive learning platform focusing on student resources and educational materials. Leading development and ideation with collaborative input.</p>
+            </div>
+            
+            <div class="project-card">
+                <span class="project-status status-progress">In Progress</span>
+                <img src="undraw_Progress_overview_re_tvcl.png" alt="progress" width="100%">
+                <h3>English Learning Platform</h3><br>
+                <p>Joint development effort focusing on interactive English learning experiences. Implementing modern front-end technologies for optimal user experience.</p>
+            </div>
+            
+            <div class="project-card">
+                <span class="project-status status-planned">Planned</span>
+                <img src="undraw_Memory_storage_reh0.png" alt="not started" width="100%">
+                <h3>Lost/Found Item Website</h3><br>
+                <p>Innovative map-based platform for item recovery. Using geolocation and interactive mapping to help users locate lost items.</p>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section id="about" style="text-align: center;">
+      <h2 style="color: white;">About us</h2><br>
+      <div class="card">
+          <p style="text-align: center;">Welcome to <strong>5s9 Horizons</strong>, a virtual enterprise founded by two entrepreneurs, Samba Sene and Farba Diouf. We are dedicated to creating innovative digital solutions, specializing in web development, animation, and multimedia content creation to meet a wide range of needs.</p>
+          <img src="undraw_Engineering_team_a7n2.png" alt="duo team" a width="100%">
+      </div><br><br>
+      
+
+  <div class="column">
+    <div class="card">
+      <div class="container">
+        <br><h2>Samba Sene</h2>
+        <img src="undraw_Pic_profile_re_7g2h.png" alt="profil" width="100%">
+        <img src="undraw_hacker_mind_6y85.png" alt="role" class="float-image">
+        <br><br><hr><br>
+        <p class="title">Web Developer & Animator</p><br><hr><br>
+        <p text-align="left">As a web developer and 2D animator, Samba specializes in building responsive, mobile-friendly websites and dynamic animations.</p><br>
+        <p text-align="left">Leading projects in front-end coding and design, he uses HTML, CSS, and JavaScript to create interactive platforms and educational tools.</p><br><hr><br>
+        <button class="email-button" onclick="window.location.href='mailto: celerity5s9@gmail.com'">celerity5s9@gmail.com</button><br>
+      </div>
+    </div>
+  </div><br><br><br><br><br><br><br><br>
+    
+  <div class="column">
+    <div class="card">
+      <div class="container">
+        <br><h2>Farba Diouf</h2>
+        <img src="undraw_Pic_profile_re_7g2h.png" alt="profil" width="100%">
+        <img src="undraw_Landscape_mode_re_r964.png" alt="role" class="float-image">
+        <br><br><hr><br>
+        <p class="title"">Content Creator & Customer Service</p><br><hr><br>
+        <p>Farba specializes in multimedia content creation and video editing, managing the creative and public aspects of our projects, by creating content and managing our social medias.</p>
+        <br>
+        <p>He brings a keen eye for detail and quality, ensuring that each project is engaging and visually compelling. While taking care of the relattion between us and the customers.</p><br><hr><br>
+        <button class="email-button" onclick="window.location.href='mailto:ababacarfarba@gmail.com'">ababacarfarba@gmail.com</button><br>
+      </div>
+    </div>
+  </div>
+        </section>
+        
+    <section id="contact">
+        <h2 style="text-align: center; color: white;">Contact Us</h2>
+        <form class="contact-form"action="https://formspree.io/f/xvgokwyb" method="POST">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+      </section>
+      
+<section id="blog">
+    <h2 style="color: red;">Coming Soon</h2><br>
+    <h2 style="text-align: center; color: white;">Our Blog</h2><br><br>
+    
+    <div class="blog-filter">
+        <button class="filter-button active">All Posts</button>
+        <button class="filter-button">Web Development</button>
+        <button class="filter-button">Animation</button>
+        <button class="filter-button">Design</button>
+        <button class="filter-button">Tips & Tricks</button>
+    </div>
+    
+    <div class="blog-grid">
+        <!-- Sample blog post 1 -->
+        <article class="blog-card">
+            <img src="undraw_static_assets_rpm6.png" alt="Web Development Tips" class="blog-image">
+            <div class="blog-content">
+                <div class="blog-date">November 14, 2024</div>
+                <h3 class="blog-title">Essential Web Development Tips for Beginners</h3>
+                <div class="blog-tags">
+                    <span class="blog-tag">Web Development</span>
+                    <span class="blog-tag">Tips</span>
+                </div>
+                <p class="blog-excerpt">Learn the fundamental principles of web development and best practices for creating responsive, user-friendly websites...</p>
+                <a href="#" class="read-more">Read More →</a>
+            </div>
+        </article>
+
+        <!-- Sample blog post 2 -->
+        <article class="blog-card">
+            <img src="undraw_video_upload_3d4u.png" alt="Animation Techniques" class="blog-image">
+            <div class="blog-content">
+                <div class="blog-date">November 13, 2024</div>
+                <h3 class="blog-title">Modern Animation Techniques in Web Design</h3>
+                <div class="blog-tags">
+                    <span class="blog-tag">Animation</span>
+                    <span class="blog-tag">Design</span>
+                </div>
+                <p class="blog-excerpt">Discover how to implement smooth, engaging animations that enhance user experience without compromising performance...</p>
+                <a href="#" class="read-more">Read More →</a>
+            </div>
+        </article>
+
+        <!-- Sample blog post 3 -->
+        <article class="blog-card">
+            <img src="undraw_Optimize_image_re_3tb1.png" alt="Content Creation" class="blog-image">
+            <div class="blog-content">
+                <div class="blog-date">November 12, 2024</div>
+                <h3 class="blog-title">Effective Content Creation Strategies</h3>
+                <div class="blog-tags">
+                    <span class="blog-tag">Content</span>
+                    <span class="blog-tag">Tips</span>
+                </div>
+                <p class="blog-excerpt">Learn how to create engaging content that resonates with your audience and drives engagement...</p>
+                <a href="#" class="read-more">Read More →</a>
+            </div>
+        </article>
+    </div>
+
+    <div class="blog-pagination">
+        <button class="page-button active">1</button>
+        <button class="page-button">2</button>
+        <button class="page-button">3</button>
+        <button class="page-button">→</button>
+    </div>
+</section>
+      
+    </main>
+    <footer>
+      <div class="social-links">
+        <a href="https://wa.me/221789229104" title="WhatsApp" target="_blank"><i class="fab fa-whatsapp fa-2x"></i></a>
+        <a href="https://www.instagram.com/5s9_horizons/" title="Instagram" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+        <a href="https://www.facebook.com/share/ZNxWd7sKMxwCLfiM/" title="Facebook" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
+      </div><br><br>
+    </footer>
+
+    <script>
+        // Elements
+        const hamburger = document.querySelector('.hamburger');
+        const sidebar = document.querySelector('.sidebar');
+        const overlay = document.querySelector('.overlay');
+        const main = document.querySelector('main');
+
+        // Toggle menu function
+        function toggleMenu() {
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+
+        // Event Listeners
+        hamburger.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+
+        // Navigation
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Hide all sections
+                document.querySelectorAll('section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Show selected section
+                const targetId = this.getAttribute('href').substring(1);
+                document.getElementById(targetId).classList.add('active');
+                
+                // Close sidebar and overlay
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+        });
+
+        // Handle initial page load
+        const initialPage = window.location.hash.substring(1) || 'home';
+        document.getElementById(initialPage).classList.add('active');
+
+        // Close sidebar when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!sidebar.contains(e.target) && 
+                !hamburger.contains(e.target) && 
+                sidebar.classList.contains('active')) {
+                toggleMenu();
+            }
+        });
+        
+        // Fonction pour créer un atome
+        function createAtom(x, y) {
+            const atom = document.createElement('div');
+            atom.className = 'atom';
+            atom.style.left = x + '%';
+            atom.style.top = y + '%';
+
+            // Créer les orbites avec électrons
+            for (let i = 1; i <= 1; i++) {
+                const orbit = document.createElement('div');
+                orbit.className = `electron-orbit orbit-${i}`;
+                
+                const electron = document.createElement('div');
+                electron.className = `electron electron-${i}`;
+                orbit.appendChild(electron);
+                
+                atom.appendChild(orbit);
+            }
+
+            document.querySelector('.scene').appendChild(atom);
+        }
+
+        // Créer plusieurs atomes à différentes positions
+        const atomPositions = [
+            { x: 0, y: 0 },
+        ];
+
+        atomPositions.forEach(pos => {
+            createAtom(pos.x, pos.y);
+        });
+        
+        // Add this to your existing script section
+document.addEventListener('DOMContentLoaded', function() {
+    // Filter buttons functionality
+    const filterButtons = document.querySelectorAll('.filter-button');
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Remove active class from all buttons
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            // Here you would typically filter the blog posts
+            // For now, we'll just log the selected category
+            console.log('Selected category:', this.textContent);
+        });
+    });
+
+    // Pagination functionality
+    const pageButtons = document.querySelectorAll('.page-button');
+    
+    pageButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Remove active class from all buttons
+            pageButtons.forEach(btn => btn.classList.remove('active'));
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            // Here you would typically load the appropriate page of posts
+            // For now, we'll just log the selected page
+            console.log('Selected page:', this.textContent);
+        });
+    });
+});
+    </script>
+    <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6723d03f4304e3196adb5526/1ibhuau0n';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+    </script>
+<!--End of Tawk.to Script-->
+</body>
+</html>
