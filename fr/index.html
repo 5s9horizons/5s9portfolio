@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/WebPage">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Primary Meta Tags -->
+<meta name="title" content="5s9 Horizons - Développement Web & Solutions Numériques">
+<meta name="description" content="5s9 Horizons est une entreprise virtuelle spécialisée dans le développement web, l'animation et la création de contenus multimédias, fondée par Samba Sene et Farba Diouf.">
+<meta name="keywords" content="développement web, animation, contenus multimédias, solutions numériques, 5s9, sites web éducatifs, design responsive">
+<meta name="author" content="Samba Sene, Farba Diouf">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://5s9horizons.github.io/5s9portfolio/">
+<meta property="og:title" content="5s9 Horizons - Développement Web & Solutions Numériques">
+<meta property="og:description" content="Services professionnels de développement web, d'animation et de création de contenus multimédias par 5s9 Horizons.">
+<meta property="og:image" content="https://5s9horizons.github.io/5s9portfolio/favicon.png">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://5s9horizons.github.io/5s9portfolio/">
+<meta property="twitter:title" content="5s9 Horizons - Développement Web & Solutions Numériques">
+<meta property="twitter:description" content="Services professionnels de développement web, d'animation et de création de contenus multimédias par 5s9 Horizons.">
+<meta property="twitter:image" content="https://5s9horizons.github.io/5s9portfolio/favicon.png">
+    <!-- Add these in your <head> -->
+<link rel="preconnect" href="https://kit.fontawesome.com">
+<link rel="preconnect" href="https://embed.tawk.to">
+<link rel="dns-prefetch" href="https://kit.fontawesome.com">
+<link rel="dns-prefetch" href="https://embed.tawk.to">
+    <!-- Add this in your <head> -->
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="mobile-web-app-capable" content="yes">
+    <title>5s9 Portfolio | 5s9 Horizons</title>
+    <link rel="icon" href="favicon.png">
+    <script src="https://kit.fontawesome.com/1519f19b40.js" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --navy: #4A90E2;
+            --light-gray: #2A2A2A;
+            --text-dark: #333;
+            --sidebar-width: 250px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-gray);
+            background-color: rgba(42, 42, 42, 0.85);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            position: fixed;
+            left: -var(--sidebar-width);
+            top: 0;
+            width: var(--sidebar-width);
+            height: 100%;
+            background-color: var(--navy);
+            padding: 2rem 0;
+            transition: left 0.3s ease;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .sidebar.active {
+            left: 0;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .hamburger {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+            z-index: 1001;
+            background: var(--navy);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            transition: 0.3s ease;
+        }
+
+        .hamburger:hover {
+            background: #002b59;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1rem;
+            margin-top: 3rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Main Content */
+        main {
+            padding: 2rem;
+            transition: margin-left 0.3s ease;
+            position: relative;
+            min-height:75vh;
+        }
+
+        /* Page Sections */
+        section {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.5s forwards;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 60px auto 0;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        } 
+
+        /* Overlay */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+        /* Previous styles remain the same until the section styles */
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-category h3 {
+            color: var(--navy);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--navy);
+            padding-bottom: 0.5rem;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .skill-list li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--navy);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-status {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .status-completed {
+            background: #e6ffe6;
+            color: #006700;
+        }
+
+        .status-progress {
+            background: #fff3e6;
+            color: #995200;
+        }
+
+        .status-planned {
+            background: #e6f3ff;
+            color: #004080;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 2rem auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--navy);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: #3CB371;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #002b59;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: var(--navy);
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card {
+                margin: 1rem 0;
+            }
+
+            section {
+                padding: 1rem;
+            }
+        }
+        
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .float-image {
+            float: right;
+            margin: 0 0 10px 10px; /* Space around the image to avoid crowding */
+            width: 40%; /* Adjust size as needed */
+            max-width: 200px; /* Prevent it from getting too large */
+        }
+        
+        .email-button {
+            background-color: #3CB371; /* Button background color */
+            color: #ffffff; /* Text color */
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .email-button:hover {
+            background-color: #005bb5; /* Darker shade for hover effect */
+         }
+         
+         .footer {
+           position: relative;
+           bottom: 0;
+         }
+        
+        .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .blog-card {
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .blog-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .blog-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .blog-content {
+        padding: 1.5rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .blog-date {
+        color: #666;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .blog-title {
+        color: var(--navy);
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
+    }
+
+    .blog-excerpt {
+        color: #444;
+        margin-bottom: 1.5rem;
+        flex-grow: 1;
+    }
+
+    .blog-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .blog-tag {
+        background: #e0e0e0;
+        color: #666;
+        padding: 0.25rem 0.75rem;
+        border-radius: 15px;
+        font-size: 0.85rem;
+    }
+
+    .read-more {
+        color: var(--navy);
+        text-decoration: none;
+        font-weight: bold;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: color 0.3s;
+    }
+
+    .read-more:hover {
+        color: #002b59;
+    }
+
+    .blog-pagination {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    .page-button {
+        background: white;
+        border: 1px solid var(--navy);
+        color: var(--navy);
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    .page-button:hover, .page-button.active {
+        background: var(--navy);
+        color: white;
+    }
+
+    .blog-filter {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .filter-button {
+        background: transparent;
+        border: 1px solid white;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    .filter-button:hover, .filter-button.active {
+        background: white;
+        color: var(--navy);
+    }
+
+    @media (max-width: 768px) {
+        .blog-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .blog-filter {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+    
+    /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--navy);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "5s9 Horizons",
+  "description": "Services professionnels de développement web, d'animation et de création de contenus multimédias par 5s9 Horizons.",
+  "url": "https://5s9horizons.github.io/5s9portfolio/",
+  "logo": "https://5s9horizons.github.io/5s9portfolio/favicon.png",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "celerity5s9@gmail.com",
+    "contactType": "customer service"
+  },
+  "sameAs": [
+    "https://www.facebook.com/5s9horizons/",
+    "https://www.instagram.com/5s9_horizons/"
+  ]
+}
+</script>
+</head>
+<body>
+    <div class="hamburger">☰</div>
+    <div class="overlay"></div>
+    
+    <nav class="sidebar">
+        <div class="nav-links">
+            <a href="#home" data-page="home">Accueil</a>
+            <a href="#projects" data-page="projects">Projects</a>
+            <a href="#skills" data-page="skills">Compétences</a>
+            <a href="#certifications" data-page="certifications">Certifications</a>
+            <a href="#about" data-page="about">À propos</a>
+            <a href="#contact" data-page="contact">Contact</a>
+            <a href="#blog" data-page="blog">Blog</a>
+        </div>
+    </nav>
+    
+    <div style=" position: fixed; right: 0; top:0; display: flex; align-items: right; width:25%; max-width:100px;">
+      <img src="favicon.png" alt="logo PNG" width="100%;">
+    </div>
+
+    <main>
+        <!-- Your existing sections -->
+        <section id="home" class="active" style="text-align: center;">
+            <div class="project-card">
+            <h2><font size="6">5s9 Horizons</font></h2><br><br>
+            <p>Bienvenue dans notre entreprise virtuelle polyvalente. Nous sommes deux entrepreneurs passionnés par la création de solutions numériques innovantes.</p>
+            <br/><br/>
+            <img src="undraw_Multitasking_re_ffpb.png" alt="Multitasking" width="100%">
+        </div>
+        </section>
+    
+    <section id="skills">
+        <h2 style="text-align: center; color: white;">Nos Compétences</h2>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3><b>Développement Web</b></h3>
+                <ul class="skill-list">
+                    <li><b>HTML5 & CSS3</b></li>
+                    <img src="undraw_Static_website_re_x70h.png" alt="HTML5 & CSS3" width="100%"><br/><br/>
+                    <li><b>JavaScript (ES6+)</b></li>
+                    <img src="undraw_static_assets_rpm6.png" alt="JavaScript" width="100%"><br/><br/>
+                    <li><b>Design Responsif</b></li>
+                    <img src="undraw_progressive_app_m9ms.png" alt="Responsive" width="100%"><br/><br/>
+                    <li><b>Control de Version (Git)</b></li>
+                    <img src="undraw_Server_push_re_303w.png" alt="version control" width="100%">
+                </ul>
+            </div><br/><br/><br/><br/>
+            <div class="skill-category">
+                <h3><b>Contenu Multimedia</b></h3>
+                <ul class="skill-list">
+                    <li><b>Montage Video</b></li>
+                    <img src="undraw_video_upload_3d4u.png" alt="video" width="100%"><br/><br/>
+                    <li><b>Animation</b></li>
+                    <img src="undraw_Animating_re_5gvn.png" alt="animation" width="100%"><br/><br/>
+                    <!-- <li><b>Graphic Design</b></li> -->
+                    <li><b>Gestion de Contenu</b></li>
+                    <img src="undraw_Image_viewer_re_7ejc.png" alt="content management" width="100%">
+                </ul>
+            </div><br/><br/><br/><br/>
+            <div class="skill-category">
+                <h3><b>Outils & Technologies</b></h3>
+                <ul class="skill-list">
+                    <li><b>Éditeur de Code (PC & Mobile)</b></li>
+                    <img src="undraw_My_code_snippets_re_4adu.png" alt="code editor" width="100%"><br/><br/>
+                    <li><b>Google Analytics</b></li>
+                    <img src="undraw_visual_data_re_mxxo.png" alt="data" width="100%"><br/><br/>
+                    <li><b>Intégration de Formulaires</b></li>
+                    <img src="undraw_reviews_lp8w.png" alt="feedbacks" width="100%"><br/><br/>
+                    <li><b>Cap Cut</b></li>
+                    <img src="undraw_Optimize_image_re_3tb1.png" alt="content" width="100%">
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications">
+        <h2 style="text-align: center; color: white;">Certifications</h2>
+        <div class="project-card">
+            <p>Nous travaillons actuellement à l'obtention de diverses certifications professionnelles. Restez à l'écoute pour les mises à jour !</p>
+            <img src="undraw_No_data_re_kwbl.png" alt="nothing yet" width="100%">
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 style="text-align: center; color: white;">Nos Projects</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <span class="project-status status-completed">Terminé</span>
+                <img src="undraw_Done_re_oak4.png" alt="completed" width="100%">
+                <h3>5s9 e-Business</h3><br>
+                <p>Un site e-commerce statique, simple mais très fonctionnel, mettant en avant nos compétences en développement et en design.</p>
+                <p>Conçu avec des technologies web de base et sans aucune contrainte backend.</p><br><p>Jetez un coup d'œil <a href="https://5s9horizons.github.io/5s9ebusiness/" target="_blank">ici</a></p><br>
+               <p><strong>Technologies:</strong> HTML5, CSS3, JavaScript, AOS(Animate on Scroll) Formspree, Design Responsif, Font Awesome</p>
+            </div>
+            
+            <div class="project-card">
+                <span class="project-status status-progress">En cours</span>
+                <img src="undraw_Process_re_gws7.png" alt="process" width="100%">
+                <h3>Site Éducatif</h3><br>
+                <p>Une plateforme d'apprentissage axée sur les ressources pour les étudiants et les matériaux éducatifs. Diriger le développement et l'idéation avec une contribution collaborative.</p>
+            </div>
+            
+            <div class="project-card">
+                <span class="project-status status-progress">En cours</span>
+                <img src="undraw_Progress_overview_re_tvcl.png" alt="progress" width="100%">
+                <h3>Plateforme d'apprentissage de l'anglais</h3><br>
+                <p>Effort de développement conjoint axé sur des expériences d'apprentissage interactives de l'anglais. Mise en œuvre de technologies front-end modernes pour une expérience utilisateur optimale.</p>
+            </div>
+            
+            <div class="project-card">
+                <span class="project-status status-planned">Prévu</span>
+                <img src="undraw_Memory_storage_reh0.png" alt="not started" width="100%">
+                <h3>Site Web d'objets trouvés/perdus</h3><br>
+                <p>Plateforme basée sur la signalisation d'objets trouvés ou perdus. Utilisation de la géolocalisation et de cartes interactives pour aider les utilisateurs à retrouver des objets perdus.</p>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section id="about" style="text-align: center;">
+      <h2 style="color: white;">À propos de nous</h2><br>
+      <div class="card">
+          <p style="text-align: center;">Bienvenue chez <strong>5s9 Horizons</strong>, une entreprise virtuelle fondée par deux entrepreneurs, Samba Sene et Farba Diouf. Nous nous consacrons à la création de solutions numériques innovantes, spécialisées dans le développement web, l'animation et la création de contenus multimédias pour répondre à une large gamme de besoins.</p>
+          <img src="undraw_Engineering_team_a7n2.png" alt="duo team" a width="100%">
+      </div><br><br>
+      
+
+  <div class="column">
+    <div class="card">
+      <div class="container">
+        <br><h2>Samba Sene</h2>
+        <img src="undraw_Pic_profile_re_7g2h.png" alt="profil" width="100%">
+        <img src="undraw_hacker_mind_6y85.png" alt="role" class="float-image">
+        <br><br><hr><br>
+        <p class="title">Développeur Web</p><br><hr><br>
+        <p text-align="left">En tant que développeur web et animateur 2D, Samba est spécialisé dans la création de sites web responsives et adaptés aux mobiles, ainsi que dans des animations dynamiques.</p><br>
+        <p text-align="left">Dirigeant des projets en codage front-end et en design, il utilise HTML, CSS et JavaScript pour créer des plateformes interactives et des outils éducatifs.</p><br><hr><br>
+        <button class="email-button" onclick="window.location.href='mailto: celerity5s9@gmail.com'">celerity5s9@gmail.com</button><br>
+      </div>
+    </div>
+  </div><br><br><br><br><br><br><br><br>
+    
+  <div class="column">
+    <div class="card">
+      <div class="container">
+        <br><h2>Farba Diouf</h2>
+        <img src="undraw_Pic_profile_re_7g2h.png" alt="profil" width="100%">
+        <img src="undraw_Landscape_mode_re_r964.png" alt="role" class="float-image">
+        <br><br><hr><br>
+        <p class="title"">Créateur de Contenus & Service Client</p><br><hr><br>
+        <p>Farba est spécialisé dans la création de contenus multimédias et le montage vidéo, gérant les aspects créatifs et publics de nos projets en créant du contenu et en administrant nos réseaux sociaux.</p>
+        <br>
+        <p>Il apporte un sens aigu du détail et de la qualité, garantissant que chaque projet soit captivant et visuellement attrayant, tout en assurant la relation entre nous et les clients.</p><br><hr><br>
+        <button class="email-button" onclick="window.location.href='mailto:ababacarfarba@gmail.com'">ababacarfarba@gmail.com</button><br>
+      </div>
+    </div>
+  </div>
+        </section>
+        
+    <section id="contact">
+        <h2 style="text-align: center; color: white;">Contactez-nous</h2>
+        <form class="contact-form"action="https://formspree.io/f/xvgokwyb" method="POST">
+          <p style="text-align: center; padding: 1rem;">Vous avez une question ou une suggestion ? <br>Envoyez-nous un commentaire via ce formulaire de contact, par e-mail ou sur l'un de nos comptes sur les réseaux sociaux.</p><br><br>
+            <div class="form-group">
+                <label for="name">Nom</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Envoyer</button>
+        </form>
+      </section>
+      
+<section id="blog">
+    <h2 style="color: #32CD32; text-align: right;">Le premier article a été publié : [ 16/11/2024]</h2><br><br><br>
+    <h2 style="text-align: center; color: white;">Our Blog</h2><br><br>
+    
+    <div class="blog-filter">
+        <button class="filter-button active">Tous les Articles</button>
+        <button class="filter-button">Développement Web</button>
+        <button class="filter-button">Animation</button>
+        <button class="filter-button">Design</button>
+        <button class="filter-button">Multimedia</button>
+        <button class="filter-button">Astuces</button>        
+    </div>
+    
+    <div class="blog-grid">
+        <!-- Sample blog post 1 -->
+        <article class="blog-card">
+            <img src="undraw_static_assets_rpm6.png" alt="Web Development Tips" class="blog-image">
+            <div class="blog-content">
+                <div class="blog-date"> 16/11/2024</div>
+                <h3 class="blog-title">Introduction au Développement Web</h3>
+                <div class="blog-tags">
+                    <span class="blog-tag">Développement Web</span>
+                </div>
+                <p class="blog-excerpt">Bienvenue dans ce guide d'introduction au développement web. Nous allons explorer les bases des langages HTML, CSS et JavaScript....</p>
+                <a href="intro-web-dev.html" class="read-more">Lire la suite <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </article>
+    </div>
+    <div class="blog-pagination">
+        <button class="page-button active">1</button>
+        <button class="page-button">2</button>
+        <button class="page-button">3</button>
+        <button class="page-button">4</button>
+        <button class="page-button">5</button>
+        <button class="page-button">6</button>
+    </div>
+    <div class="blog-pagination">
+        <button class="page-button">7</button>
+        <button class="page-button">8</button>
+        <button class="page-button">9</button>
+        <button class="page-button">10</button>
+        <button class="page-button">11</button>
+        <button class="page-button">12</button>
+    </div>
+    <div class="blog-pagination">
+        <button class="page-button">13</button>
+        <button class="page-button">14</button>
+        <button class="page-button">15</button>
+        <button class="page-button">16</button>
+        <button class="page-button">17</button>
+        <button class="page-button">18</button> 
+        <button class="page-button"><i class="fas fa-arrow-right"></i></button>
+    </div>
+</section>
+      
+    </main>
+    
+    <!-- Bouton Back to Top -->
+    <button class="back-to-top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <footer>
+      <div class="social-links">
+        <a href="https://wa.me/221789229104" title="WhatsApp" target="_blank"><i class="fab fa-whatsapp fa-2x"></i></a>
+        <a href="https://www.instagram.com/5s9_horizons/" title="Instagram" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+        <a href="https://www.facebook.com/share/ZNxWd7sKMxwCLfiM/" title="Facebook" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
+      </div><br><br>
+    </footer>
+
+    <script>
+        // Elements
+        const hamburger = document.querySelector('.hamburger');
+        const sidebar = document.querySelector('.sidebar');
+        const overlay = document.querySelector('.overlay');
+        const main = document.querySelector('main');
+
+        // Toggle menu function
+        function toggleMenu() {
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+
+        // Event Listeners
+        hamburger.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+
+        // Navigation
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Hide all sections
+                document.querySelectorAll('section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Show selected section
+                const targetId = this.getAttribute('href').substring(1);
+                document.getElementById(targetId).classList.add('active');
+                
+                // Close sidebar and overlay
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+        });
+
+        // Handle initial page load
+        const initialPage = window.location.hash.substring(1) || 'home';
+        document.getElementById(initialPage).classList.add('active');
+
+        // Close sidebar when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!sidebar.contains(e.target) && 
+                !hamburger.contains(e.target) && 
+                sidebar.classList.contains('active')) {
+                toggleMenu();
+            }
+        });
+        
+        document.addEventListener('DOMContentLoaded', function() {
+    // Éléments du DOM
+    const blogGrid = document.querySelector('.blog-grid');
+    const filterButtons = document.querySelectorAll('.filter-button');
+    const pageButtons = document.querySelectorAll('.page-button');
+    const articles = Array.from(document.querySelectorAll('.blog-card'));
+    
+    // Configuration
+    const articlesPerPage = 1;
+    let currentPage = 1;
+
+    // Gestionnaire de filtre
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Mise à jour du style des boutons
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            const category = this.textContent;
+            filterArticles(category);
+            updatePagination();
+            showPage(1); // Retour à la première page après filtrage
+        });
+    });
+
+    // Gestionnaire de pagination
+    pageButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Mise à jour du style des boutons
+            pageButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Si c'est le bouton suivant (→)
+            if (this.textContent === '→') {
+                showPage(currentPage + 1);
+            } else {
+                showPage(parseInt(this.textContent));
+            }
+        });
+    });
+
+    // Fonction de filtrage
+    function filterArticles(category) {
+        articles.forEach(article => {
+            const tags = Array.from(article.querySelectorAll('.blog-tag')).map(tag => tag.textContent);
+            
+            if (category === 'All Posts' || tags.includes(category)) {
+                article.style.display = '';
+                article.dataset.filtered = 'true';
+            } else {
+                article.style.display = 'none';
+                article.dataset.filtered = 'false';
+            }
+        });
+    }
+
+    // Fonction de pagination
+    function showPage(pageNum) {
+        const filteredArticles = articles.filter(article => article.dataset.filtered !== 'false');
+        const totalPages = Math.ceil(filteredArticles.length / articlesPerPage);
+        
+        // Validation de la page
+        pageNum = Math.min(Math.max(1, pageNum), totalPages);
+        currentPage = pageNum;
+        
+        // Afficher les articles de la page courante
+        filteredArticles.forEach((article, index) => {
+            const shouldShow = index >= (pageNum - 1) * articlesPerPage && 
+                             index < pageNum * articlesPerPage;
+            article.style.display = shouldShow ? '' : 'none';
+        });
+        
+        // Mise à jour des boutons de pagination
+        updatePaginationButtons(totalPages);
+    }
+
+    // Mise à jour des boutons de pagination
+    function updatePaginationButtons(totalPages) {
+        pageButtons.forEach(button => {
+            // Gestion du bouton suivant (→)
+            if (button.textContent === '→') {
+                button.style.display = currentPage < totalPages ? '' : 'none';
+                return;
+            }
+            
+            const pageNum = parseInt(button.textContent);
+            if (pageNum <= totalPages) {
+                button.style.display = '';
+                if (pageNum === currentPage) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            } else {
+                button.style.display = 'none';
+            }
+        });
+    }
+
+    // Mise à jour initiale de la pagination
+    function updatePagination() {
+        const filteredArticles = articles.filter(article => article.dataset.filtered !== 'false');
+        const totalPages = Math.ceil(filteredArticles.length / articlesPerPage);
+        updatePaginationButtons(totalPages);
+    }
+
+    // Initialisation
+    filterArticles('All Posts');
+    updatePagination();
+    showPage(1);
+});
+
+    // Script pour le bouton Back to Top
+        const backToTop = document.querySelector('.back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+    <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6723d03f4304e3196adb5526/1ibhuau0n';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+    </script>
+<!--End of Tawk.to Script-->
+</body>
+</html>
