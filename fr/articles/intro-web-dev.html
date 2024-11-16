@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5s9 Horizons | Blog post - Introduction au Développement Web</title>
+    <script src="https://kit.fontawesome.com/1519f19b40.js" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --navy: #4A90E2;
+            --light-gray: #2A2A2A;
+            --text-dark: #333;
+            --sidebar-width: 250px;
+            --code-bg: #2E3440;
+            --code-green: #32CD32;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: rgba(42, 42, 42, 0.85);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .article-container {
+            max-width: 800px;
+            margin: 80px auto 40px;
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .article-header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .article-title {
+            color: var(--navy);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .article-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .article-tag {
+            background: #e0e0e0;
+            color: #666;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+        }
+
+        .article-featured-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .article-content {
+            line-height: 1.8;
+            color: #444;
+        }
+
+        .article-content h2 {
+            color: var(--navy);
+            margin: 2rem 0 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .article-content h3 {
+            color: var(--navy);
+            margin: 2rem 0 1rem;
+            font-size: 1.2rem;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            color: #444;
+        }
+
+        .article-content pre {
+            background: var(--code-bg);
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content code {
+            background: none;
+            color: var(--code-green);
+            font-family: 'Courier New', monospace;
+        }
+        
+        .article-content blockquote {
+            border-left: 4px solid var(--navy);
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+            color: black;
+            background-color: #f4f4f4;
+        }
+
+        .article-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+        }
+
+        .nav-link {
+            color: var(--navy);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-link:hover {
+            text-decoration: none;
+        }
+        
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--navy);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Styles responsives */
+        @media (max-width: 768px) {
+            .article-container {
+                margin: 60px 1rem 2rem;
+                padding: 1.5rem;
+            }
+
+            .article-title {
+                font-size: 2rem;
+            }
+
+            .article-navigation {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+        }
+        
+        /* footer */
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: var(--navy);
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+        }
+        
+        /* Style pour le bouton de retour personnalisé */
+.custom-back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: green;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s ease;
+    z-index: 1001; /* Même z-index que le hamburger pour être sûr qu'il soit visible */
+}
+
+.custom-back-button:hover {
+    background: #002b59;
+    transform: translateX(-3px);
+}
+
+.custom-back-button svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Ajustement pour mobile */
+@media (max-width: 768px) {
+    .custom-back-button {
+        top: 15px;
+        left: 15px;
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+    
+    .custom-back-button svg {
+        width: 14px;
+        height: 14px;
+    }
+}
+
+/* Updated styles for the preview box with a different background color */
+.preview-box {
+    background: #f4f4f4;          /* Lighter gray background for contrast */
+    border: 1px solid #ddd;       /* Subtle border */
+    padding: 1rem;                /* Padding for spacing */
+    border-radius: 8px;           /* Rounded corners */
+    margin-bottom: 1rem;        /* Space below the preview box */
+
+}
+
+/* Adjusted text colors for the preview box */
+.preview-box p {
+    margin: 0;
+    color: var(--text-dark);
+}
+
+.preview-box h1,
+.preview-box h2 {
+    color: black;
+}
+
+.code-container {
+    position: relative;
+    background-color: #2A2A2A;
+    color: #f8f8f8;
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+    overflow: auto;
+    font-family: monospace;
+}
+
+.copy-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--navy);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0 8px 0 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    z-index: 1;
+}
+
+.copy-btn:hover {
+    background-color: #357ABD;
+}
+    </style>
+</head>
+<body>
+  <a href="../index.html" class="custom-back-button">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="19" y1="12" x2="5" y2="12"></line>
+      <polyline points="12 19 5 12 12 5"></polyline>
+    </svg>
+  </a>
+  
+  <div style=" position: absolute; right: 0; top:0; display: flex; align-items: right; width:25%; max-width:100px;">
+    <img src="favicon.png" alt="logo PNG" width="100%;">
+  </div>
+    <main style="margin-top: 100px;">
+        <article class="article-container">
+            <header class="article-header">
+                <h1 class="article-title">Introduction au Développement Web</h1>
+                <div class="article-meta">Publié le 16/11/2024 | Auteur : Samba Sene</div>
+            </header>
+            <div class="article-tags">
+              <span class="article-tag">Web Development</span>
+            </div>
+            <img src="undraw_static_assets_rpm6.png" alt="Image de l'article" class="article-featured-image">
+            <section class="article-content">
+                <p>Bienvenue dans ce guide d'introduction au développement web. Nous allons explorer les bases des langages <b>HTML</b>, <b>CSS</b> et <b>JavaScript</b>.</p>
+
+                <h2>HTML : La structure</h2>
+                <blockquote>
+                    Hypertext Markup Language
+                </blockquote>
+                <p>HTML est utilisé pour créer la structure de base d'une page web.</p>
+                <p>Le HTML est souvent visualisé comme le squelette d'une page web. Il sert à structurer et organiser le contenu de la page. Imaginez une page web comme un document ; le HTML définit les sections, les paragraphes, les titres, les images, et les liens.
+                </p>
+                <h3>Comment fonctionne le HTML ?</h3>
+                <p>Dans le langage HTML, on utilise des <b>balises</b> pour envelopper le contenu. Ces balises disent au navigateur ce que chaque morceau de contenu représente (par exemple, un titre, un paragraphe, ou une image).
+                </p>
+                <p>Exemple :</p>
+                <h4>Source Code</h4>
+                <div class="code-container">
+                  <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                  <pre class="code-block">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;<code>Page Web</code>&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;<code>Hello, World !</code>&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+                </pre>
+                </div>
+                <h4>Preview</h4>
+                <div class="preview-box">
+    <h1>Hello, World !</h1>  <!-- Example of the output for the HTML code -->
+</div>
+
+                <h2>CSS : Le style</h2>
+                <blockquote>
+                    Cascading Style Sheets
+                </blockquote>
+                <p>Avec CSS, vous pouvez styliser vos pages web.</p>
+                <p>Le CSS est comme la peau et les vêtements propres à chaque page web. Il rend votre page attrayante et définie l’aspect visuel de vos éléments HTML.</p>
+                <h3>Comment fonctionne le CSS ?</h3>
+                <p>Il utilise des <b>règles</b> pour appliquer des styles aux éléments HTML (par exemple, la couleur, la taille, ou l’alignement).</p>
+                <p>Il peut être utilisé pour rendre un site <b>adaptatif</b> (c’est-à-dire qu’il s’ajuste à différents écrans, comme ceux des téléphones et des ordinateurs).
+                </p>
+                <p>Exemple :</p>
+                <h4>Source Code</h4>
+                <div class="code-container">
+                  <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                  <pre class="code-block">
+body {
+  background-color: <code>#f0f0f0</code>;
+  font-family: Arial, sans-serif;
+  color: <code>#333</code>;
+}
+h1 {
+  text-align: center;
+  color: <code>#4A90E2</code>;
+}
+                </pre>
+                </div>
+                
+                <h4>Preview</h4>
+                <div class="preview-box">
+    <h1 style="text-align: center; color: #4A90E2; background-color: #f0f0f0;">Hello, World !</h1>  <!-- Example of the output for the CSS code -->
+</div>
+
+                <h2>JavaScript : L'interactivité</h2>
+                <p>JavaScript permet d'ajouter de l'interactivité à vos pages.</p>
+                <p>Le JavaScript est comme le cerveau et les muscles qui animent votre site. Il permet aux utilisateurs d’interagir avec la page en exécutant des actions (par exemple, cliquer sur un bouton, remplir un formulaire, ou naviguer dans un menu).</p>
+                <h3>Comment fonctionne le JavaScript ?</h3>
+                <p>Il est dynamiquement réactif, ce qui signifie qu’il peut changer le contenu ou le style d’une page en fonction des actions de l’utilisateur.</p>
+                <p>Exemple :</p>
+                <h4>Source Code</h4>
+                <div class="code-container">
+                  <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+    <pre class="code-block">
+&lt;button onclick="greet()"&gt;Cliquez-moi&lt;/button&gt;
+&lt;script&gt;
+function greet() {
+    alert('Hello, World!');
+}
+&lt;/script&gt;
+    </pre>
+</div>
+               <h4>Preview</h4>
+               <div class="preview-box">
+                  <button onclick="greet()">Cliquez-moi</button>
+               </div>
+               <h2>Conclusion : La symbiose entre HTML, CSS et JavaScript</h2>
+               <p>Lorsque vous combinez HTML, CSS et JavaScript, vous créez une expérience utilisateur complète. Voici comment ils fonctionnent ensemble :</p>
+               <ol>
+                 <li><b><u>HTML</u></b> : Définit ce qui est affiché comme les titres, paragraphes, images, boutons, etc.</li>
+                 <li><b><u>CSS</u></b> : Définit l’apparence de ce qui est affiché. Par exemple, les titres deviennent colorés, les paragraphes sont alignés, les boutons sont stylisés, etc.</li>
+                 <li><b><u>JavaScript</u></b> : Rend le contenu interactif. Par exemple, avec javascript on peut faire en sorte que les boutons changent de couleur au survol, une fenêtre apparaît après un clic...</li>
+               </ol>
+               <p>L’expérience offerte :</p>
+               <ul>
+                 <li>Imaginez visiter un site web :</li>
+                 <li>Le HTML vous montre le contenu brut.</li>
+                 <li>Le CSS le rend agréable, original et harmonieux.</li>
+                 <li>Le JavaScript vous permet d’interagir avec ce contenu (cliquer, taper, ou même jouer).</li>
+               </ul>
+               <p>Ainsi, en apprenant à maîtriser ces trois technologies, vous serez capable de créer des pages web qui ne sont pas seulement fonctionnelles, mais également belles et engageantes. Vous deviendrez à la fois architecte, décorateur d’intérieur et ingénieur en une seule personne !</p>
+               <p>Et ce n’est pas tout, car peu importe à quel point ces trois technologies sont impressionnantes, elles ne représentent que la base du <b>développement web</b>, plus précisément dans le domaine du <b>Front-end</b>. En effet, non seulement il existe d’autres technologies qui enrichissent le Front-end, mais c’est surtout après avoir découvert les possibilités offertes par le <b>Back-end</b> que vous aurez un premier aperçu de ce qu’est vraiment le développement web.</p>  
+            </section>
+            <nav class="article-navigation">
+                <a href="#" class="nav-link"><i class="fas fa-arrow-left"></i></a>
+                <a href="#" class="nav-link"><i class="fas fa-arrow-right"></i></a>
+            </nav>
+                        
+        </article>
+    </main>
+    <button class="back-to-top">
+      <i class="fas fa-arrow-up"></i>      
+    </button>
+    <footer class="footer">
+      <div class="social-links">
+        <a href="https://wa.me/221789229104" title="WhatsApp" target="_blank"><i class="fab fa-whatsapp fa-2x"></i></a>
+        <a href="https://www.instagram.com/5s9_horizons/" title="Instagram" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+        <a href="https://www.facebook.com/share/ZNxWd7sKMxwCLfiM/" title="Facebook" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
+      </div><br><br>
+    </footer>
+    <script>
+      // Script pour le bouton Back to Top
+        const backToTop = document.querySelector('.back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        function copyCode(button) {
+// Find the parent code-container
+    const container = button.parentElement;    
+    // Select the code block inside the container
+    const codeBlock = container.querySelector('.code-block');
+    const code = codeBlock.textContent; // Extract the code as plain text
+    // Copy the code to clipboard
+    navigator.clipboard.writeText(code)
+}
+
+    </script>
+    <script>
+    function greet() {
+        alert('Hello, World !');
+    }
+</script>
+</body>
+</html>
