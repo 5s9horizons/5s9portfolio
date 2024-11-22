@@ -387,42 +387,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
            position: relative;
            bottom: 0;
          }
-         
-         .scene {     
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;            
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .atom {
-            position: fixed;
-            width: 200px;
-            height: 200px;
-        }
-
-        .orbit-1 { transform: translate(-50%, -50%) rotate(0deg); }
-
-        .electron {
-            position: absolute;
-            width: 15px;
-            height: 15px;
-            background: #0066cc;
-            border-radius: 50%;
-            top: 50%;
-            left: -7.5px; /* moitié de la largeur */
-            transform-origin: calc(100% + 80px) 50%;
-            box-shadow: 0 0 15px #0066cc;
-        }
-
-        .electron-1 { animation: electron 3.125s infinite linear; }
-
-        @keyframes electron {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
         
         .blog-grid {
         display: grid;
@@ -454,7 +418,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .blog-content {
         padding: 1.5rem;
         flex-grow: 1;
-        display: flex;
+       display: flex;
         flex-direction: column;
     }
 
@@ -595,14 +559,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <a href="#home" data-page="home">Home</a>
             <a href="#projects" data-page="projects">Projects</a>
             <a href="#skills" data-page="skills">Skills</a>
-            <a href="#certifications" data-page="certifications">Certifications</a>
             <a href="#about" data-page="about">About</a>
             <a href="#contact" data-page="contact">Contact</a>
-            <a href="#blog" data-page="blog">Blog</a>
         </div>
     </nav>
-    
-    <div class="scene">
 
     <main>
         <!-- Your existing sections -->
@@ -659,14 +619,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <img src="undraw_Optimize_image_re_3tb1.png" alt="content" width="100%">
                 </ul>
             </div>
-        </div>
-    </section>
-
-    <section id="certifications">
-        <h2 style="text-align: center; color: white;">Certifications</h2>
-        <div class="project-card">
-            <p>We are currently working towards various professional certifications. Stay tuned for updates!</p>
-            <img src="undraw_No_data_re_kwbl.png" alt="nothing yet" width="100%">
         </div>
     </section>
 
@@ -764,75 +716,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
             <button type="submit" class="submit-btn">Send Message</button>
         </form>
-      </section>
-      
-<section id="blog">
-    <h2 style="color: red;">Coming Soon</h2><br>
-    <h2 style="text-align: center; color: white;">Our Blog</h2><br><br>
-    
-    <div class="blog-filter">
-        <button class="filter-button active">All Posts</button>
-        <button class="filter-button">Web Development</button>
-        <button class="filter-button">Animation</button>
-        <button class="filter-button">Design</button>
-        <button class="filter-button">Tips & Tricks</button>
-    </div>
-    
-    <div class="blog-grid">
-        <!-- Sample blog post 1 -->
-        <article class="blog-card">
-            <img src="undraw_static_assets_rpm6.png" alt="Web Development Tips" class="blog-image">
-            <div class="blog-content">
-                <div class="blog-date">November 14, 2024</div>
-                <h3 class="blog-title">Essential Web Development Tips for Beginners</h3>
-                <div class="blog-tags">
-                    <span class="blog-tag">Web Development</span>
-                    <span class="blog-tag">Tips</span>
-                </div>
-                <p class="blog-excerpt">Learn the fundamental principles of web development and best practices for creating responsive, user-friendly websites...</p>
-                <a href="#" class="read-more">Read More →</a>
-            </div>
-        </article>
-
-        <!-- Sample blog post 2 -->
-        <article class="blog-card">
-            <img src="undraw_video_upload_3d4u.png" alt="Animation Techniques" class="blog-image">
-            <div class="blog-content">
-                <div class="blog-date">November 13, 2024</div>
-                <h3 class="blog-title">Modern Animation Techniques in Web Design</h3>
-                <div class="blog-tags">
-                    <span class="blog-tag">Animation</span>
-                    <span class="blog-tag">Design</span>
-                </div>
-                <p class="blog-excerpt">Discover how to implement smooth, engaging animations that enhance user experience without compromising performance...</p>
-                <a href="#" class="read-more">Read More →</a>
-            </div>
-        </article>
-
-        <!-- Sample blog post 3 -->
-        <article class="blog-card">
-            <img src="undraw_Optimize_image_re_3tb1.png" alt="Content Creation" class="blog-image">
-            <div class="blog-content">
-                <div class="blog-date">November 12, 2024</div>
-                <h3 class="blog-title">Effective Content Creation Strategies</h3>
-                <div class="blog-tags">
-                    <span class="blog-tag">Content</span>
-                    <span class="blog-tag">Tips</span>
-                </div>
-                <p class="blog-excerpt">Learn how to create engaging content that resonates with your audience and drives engagement...</p>
-                <a href="#" class="read-more">Read More →</a>
-            </div>
-        </article>
-    </div>
-
-    <div class="blog-pagination">
-        <button class="page-button active">1</button>
-        <button class="page-button">2</button>
-        <button class="page-button">3</button>
-        <button class="page-button">→</button>
-    </div>
-</section>
-      
+    </section>     
     </main>
     <footer>
       <div class="social-links">
@@ -891,85 +775,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 toggleMenu();
             }
         });
-        
-        // Fonction pour créer un atome
-        function createAtom(x, y) {
-            const atom = document.createElement('div');
-            atom.className = 'atom';
-            atom.style.left = x + '%';
-            atom.style.top = y + '%';
-
-            // Créer les orbites avec électrons
-            for (let i = 1; i <= 1; i++) {
-                const orbit = document.createElement('div');
-                orbit.className = `electron-orbit orbit-${i}`;
-                
-                const electron = document.createElement('div');
-                electron.className = `electron electron-${i}`;
-                orbit.appendChild(electron);
-                
-                atom.appendChild(orbit);
-            }
-
-            document.querySelector('.scene').appendChild(atom);
-        }
-
-        // Créer plusieurs atomes à différentes positions
-        const atomPositions = [
-            { x: 0, y: 0 },
-        ];
-
-        atomPositions.forEach(pos => {
-            createAtom(pos.x, pos.y);
-        });
-        
-        // Add this to your existing script section
-document.addEventListener('DOMContentLoaded', function() {
-    // Filter buttons functionality
-    const filterButtons = document.querySelectorAll('.filter-button');
-    
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Remove active class from all buttons
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            // Add active class to clicked button
-            this.classList.add('active');
-            
-            // Here you would typically filter the blog posts
-            // For now, we'll just log the selected category
-            console.log('Selected category:', this.textContent);
-        });
-    });
-
-    // Pagination functionality
-    const pageButtons = document.querySelectorAll('.page-button');
-    
-    pageButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Remove active class from all buttons
-            pageButtons.forEach(btn => btn.classList.remove('active'));
-            // Add active class to clicked button
-            this.classList.add('active');
-            
-            // Here you would typically load the appropriate page of posts
-            // For now, we'll just log the selected page
-            console.log('Selected page:', this.textContent);
-        });
-    });
-});
     </script>
-    <!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/6723d03f4304e3196adb5526/1ibhuau0n';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-    </script>
-<!--End of Tawk.to Script-->
 </body>
 </html>
